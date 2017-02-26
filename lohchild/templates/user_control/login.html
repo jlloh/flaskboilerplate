@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="page-header">
+<h1>Sign In to Proceed</h1>
+</div>
+
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<script>
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  //console.log(profile.getId());
+  var id_token = googleUser.getAuthResponse().id_token;
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '{{url_for('api.validate_token')}}');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    response_object = JSON.parse(xhr.responseText);
+    console.log(response_object.validuser);
+    if (response_object.validuser == false) {signOut()};
+    window.location.replace((response_object.redirect_url))};
+  xhr.send('idtoken=' + id_token);
+  //console.log(id_token);
+};
+function onLoad() {
+  gapi.load('auth2', function() {
+    gapi.auth2.init();
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut();
+  });
+};
+//var auth2 = gapi.auth2.getAuthInstance();
+//auth2.signOut();
+</script>
+
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
+{% endblock %}

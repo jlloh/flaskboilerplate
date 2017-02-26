@@ -1,0 +1,5 @@
+*.pyc
+bower_components/
+instance/config.py
+instance/database.db
+static/

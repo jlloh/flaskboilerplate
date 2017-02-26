@@ -1,0 +1,21 @@
+{
+  "name": "lohchild",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "d3": "^4.6.0",
+    "jquery": "^3.1.1",
+    "react": "^15.4.2"
+  }
+}

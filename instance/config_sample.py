@@ -1,0 +1,2 @@
+SECRET_KEY=''
+GOOGLE_APP_ID=''
